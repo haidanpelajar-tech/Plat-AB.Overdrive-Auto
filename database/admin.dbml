@@ -42,14 +42,14 @@ Table Supplier {
   no_telp varchar
 }
 
-
-Table Detail_Penjualan {
-  id_detail_penjualan int [pk]
-  id_transaksi int [ref: > Transaksi_Penjualan.id_transaksi]
-  id_produk int [ref: > Produk.id_produk]
-  jumlah int
-  harga_satuan int
-  subtotal int
+Table Transaksi_Penjualan {
+  id_transaksi int [pk]
+  tanggal date
+  jalur_pembelian varchar
+  total_bayar int
+  status_transaksi varchar
+  id_pelanggan int [ref: > Pengguna.id_pengguna]
+  id_admin int [ref: > Pengguna.id_pengguna]
 }
 
 Table Transaksi_Kendaraan {
@@ -69,5 +69,14 @@ Table Pembelian_Barang {
   total_biaya int
   id_supplier int [ref: > Supplier.id_supplier]
   id_admin int [ref: > Pengguna.id_pengguna]
+}
+
+Table Detail_Pembelian {
+  id_detail_pembelian int [pk]
+  id_pembelian int [ref: > Pembelian_Barang.id_pembelian]
+  id_produk int [ref: > Produk.id_produk]
+  jumlah int
+  harga_beli int
+  subtotal int
 }
 
